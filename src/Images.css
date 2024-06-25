@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap'); /* Импортируем шрифт Poppins */
+
 *,
 *::before,
 *::after {
@@ -9,7 +11,8 @@
   --white: #ffffff;
   --bg: #222224; /* Dark background */
   --text-color: #ffffff;
-  --text-soft: 'Arial', sans-serif; /* Square-like font style */
+  --text-soft: 'Poppins', sans-serif; /* Более мягкий шрифт */
+  --hover-glow-color: #6a59ff; /* Purple color for text glow on hover */
 }
 
 html {
@@ -55,13 +58,24 @@ html {
 
 body {
   font-size: 1.6rem;
-  background: var(--bg);
+  background: url('src/assets/image.png') repeat; /* Добавьте ваш путь к изображению */
   color: var(--text-color); /* Set text color */
   font-family: var(--text-soft); /* Set square-like font style */
   margin: 0; /* Ensure no default margin */
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensure body takes full height */
+  background-size: 100px 100px; /* Настройте размер повторяющегося изображения по вашему желанию */
+  animation: moveBackground 800s linear infinite; /* Добавляем анимацию движения фона */
+}
+
+@keyframes moveBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 10000px 0;
+  }
 }
 
 .container {
@@ -76,6 +90,7 @@ body {
   text-align: center;
   color: var(--text-color); /* Set heading color */
   font-family: var(--text-soft); /* Set square-like font style */
+  font-weight: 600; /* Сделать заголовок жирным */
 }
 
 .swiper_container {
@@ -85,14 +100,15 @@ body {
 }
 
 .swiper-slide {
-  width: 37rem;
+  width: 52rem;
   height: auto;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   opacity: 0;
-  transition: opacity 1.5s ease-in-out; /* Slower transition */
+  transition: opacity 1.5s ease-in-out;
+  padding-bottom: 4rem; /* Добавляем отступ снизу */
 }
 
 .swiper-slide-active {
@@ -105,40 +121,54 @@ body {
   object-fit: cover;
 }
 
+.blurred-line {
+  display: block;
+  filter: blur(5px);
+  transition: filter 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.blurred-line:hover {
+  filter: blur(0); /* Убираем размытие при наведении */
+}
+
 .image-text {
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   font-size: 1.6rem;
   text-align: center;
-  color: var(--text-color); /* Set text color */
-  font-family: var(--text-soft); /* Set square-like font style */
+  color: var(--text-color);
+  font-family: var(--text-soft);
+  font-weight: 600; /* Сделать текст жирным */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
+  width: 95%; /* Увеличиваем ширину контейнера для текста */
+  margin-left: auto;
+  margin-right: auto;
+  transition: text-shadow 0.3s ease-in-out; /* Добавляем переход для тени текста */
 }
 
-.blurred-word {
-  filter: blur(5px); /* Initial blur effect */
-  transition: filter 0.5s ease-in-out; /* Transition for blur effect */
-  cursor: pointer; /* Change cursor to pointer on hover */
-}
-
-.blurred-word:hover {
-  filter: blur(0); /* Remove blur effect on hover */
+.image-text:hover {
+  text-shadow: 
+    0 0 8px var(--hover-glow-color),
+    0 0 16px var(--hover-glow-color),
+    0 0 24px var(--hover-glow-color),
+    0 0 32px var(--hover-glow-color); /* Добавляем жёсткое свечение текста при наведении */
 }
 
 @media (max-width: 500px) {
   .swiper_container {
-    height: 54rem;
+    height: 80rem;
   }
   .swiper-slide {
-    width: 28rem !important;
-    height: auto;
+    width: 50rem !important;
+    height: 50rem;
   }
   .swiper-slide img {
-    width: 28rem !important;
-    height: 36rem !important;
+    width: 50rem !important;
+    height: 50rem !important;
   }
 }
 
