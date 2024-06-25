@@ -58,7 +58,7 @@ html {
 
 body {
   font-size: 1.6rem;
-  background: url('src/assets/image.png') repeat; /* Добавьте ваш путь к изображению */
+  background: url('./assets/image.png') repeat; /* Добавьте ваш путь к изображению */
   color: var(--text-color); /* Set text color */
   font-family: var(--text-soft); /* Set square-like font style */
   margin: 0; /* Ensure no default margin */
